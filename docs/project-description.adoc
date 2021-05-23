@@ -1,0 +1,67 @@
+= Project description
+
+Library with common code and dependencies for use in other projects.
+
+== Language
+The project is built with `Java 11`.
+
+== Build tool
+`Gradle Wrapper` is used as a build tool for the project. Gradle-related properties can be found in
+the `gradle/wrapper/gradle-wrapper.properties` file.
+
+=== Updating
+You can update gradle wrapper with: `./gradlew wrapper --gradle-version=x.x.x --distribution-type=all
+--gradle-distribution-sha256-sum=some-checksome`. Valid gradle distribution checksomes can be found
+at gradle's https://gradle.org/release-checksums/[Checksome reference page].
+
+== Code coverage
+`JaCoCo` plugin is used to analyze code coverage.
+
+=== Report
+You can generate the test coverage report with: `./gradlew jacocoTestReport`. The report can be
+viewed by opening the `build/reports/jacoco/test/html/index.html` file.
+
+=== Exclusions
+Classes which are excluded from jacoco reports are described in the `jacocoExclusions` method in
+`build.gradle`. Additionally, all lombok generated code is also excluded. This is achieved with the
+`lombok.addLombokGeneratedAnnotation = true` parameter in the `lombok.config` file. If this parameter
+is present, lombok will annotate all generated code with its `@Generated` annotation and jacoco
+automatically excludes such code from processing.
+
+=== Rules
+100% code coverage is enforced by the `jacocoTestCoverageVerification` task. You can run this task
+with: `./gradlew jacocoTestCoverageVerification`. If the coverage falls below 100%, the task will
+fail.
+
+== CI/CD
+`Github Actions` is used for automating the project workflow. The workflow file can be found in the
+`.github/workflows` directory.
+
+=== Steps
+* Check out code from the repository
+* Install java
+* Validate `gradle-wrapper.jar`
+* Build, test and check code coverage
+
+== Definitions
+
+* Consumer project - project that uses this library.
+
+== Dependency management
+
+=== Dependency versions
+
+* Some of the library's dependencies are used by consumer projects. Such dependencies should always be
+declared with versions, even if they're managed by maven boms. This is needed for the `maven-publish`
+plugin to correctly publish dependency versions.
+* You can access versions declared in boms using the following expression:
+`dependencyManagement.importedProperties['some-library.version']`.
+* Other dependencies, which are only used by the library itself and are managed by maven boms, should
+be declared without versions.
+
+=== Dependency scopes
+
+* Dependencies that should appear on the compile & runtime classpaths of consumer projects should be
+declared with the `api` dependency configuration.
+* Dependencies that should appear only on the runtime classpath of consumer projects should be declared
+with the `implementation` dependency configuration.

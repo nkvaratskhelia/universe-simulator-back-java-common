@@ -1,0 +1,49 @@
+plugins {
+	id 'java-library'
+	id 'idea'
+	id 'jacoco'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+group = 'com.example.universe.simulator.common'
+version = '0.0.1'
+
+sourceCompatibility = '11'
+
+test {
+	useJUnitPlatform()
+}
+
+jacocoTestCoverageVerification {
+	dependsOn test
+	afterEvaluate {
+		jacocoExclusions(classDirectories)
+	}
+
+	violationRules {
+		rule {
+			limit {
+				minimum = 1
+			}
+		}
+	}
+}
+
+private jacocoExclusions(classDirectories) {
+	classDirectories.setFrom(files(classDirectories.files.collect {
+		fileTree(dir: it, exclude: [])
+	}))
+}
+
+jacocoTestReport {
+	dependsOn test
+	afterEvaluate {
+		jacocoExclusions(classDirectories)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {}
