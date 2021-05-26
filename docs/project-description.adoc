@@ -1,6 +1,6 @@
 = Project description
 
-Library with common code and dependencies for use in other projects.
+Library with common code for use in other projects.
 
 == Language
 The project is built with `Java 11`.
@@ -42,26 +42,3 @@ fail.
 * Install java
 * Validate `gradle-wrapper.jar`
 * Build, test and check code coverage
-
-== Definitions
-
-* Consumer project - project that uses this library.
-
-== Dependency management
-
-=== Dependency versions
-
-* Some of the library's dependencies are used by consumer projects. Such dependencies should always be
-declared with versions, even if they're managed by maven boms. This is needed for the `maven-publish`
-plugin to correctly publish dependency versions.
-* You can access versions declared in boms using the following expression:
-`dependencyManagement.importedProperties['some-library.version']`.
-* Other dependencies, which are only used by the library itself and are managed by maven boms, should
-be declared without versions.
-
-=== Dependency scopes
-
-* Dependencies that should appear on the compile & runtime classpaths of consumer projects should be
-declared with the `api` dependency configuration.
-* Dependencies that should appear only on the runtime classpath of consumer projects should be declared
-with the `implementation` dependency configuration.

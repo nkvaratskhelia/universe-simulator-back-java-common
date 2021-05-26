@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.example.universe.simulator.common'
-version = '0.0.1'
+version = '0.0.2'
 
 sourceCompatibility = '11'
 
@@ -46,4 +46,13 @@ repositories {
 	mavenCentral()
 }
 
-dependencies {}
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:2.4.6'
+    }
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+}
