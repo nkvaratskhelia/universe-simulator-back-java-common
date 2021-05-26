@@ -42,3 +42,5 @@ fail.
 * Install java
 * Validate `gradle-wrapper.jar`
 * Build, test and check code coverage
+* Publish a package to `GitHub Packages` with gradle's `publish` task. You need to add github packages
+url to your repository secrets.
