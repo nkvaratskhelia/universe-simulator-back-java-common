@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'com.example.universe.simulator.common'
-version = '0.0.4'
+version = '0.0.5'
 
 sourceCompatibility = '11'
 
