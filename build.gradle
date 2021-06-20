@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'com.example.universe.simulator.common'
-version = '0.0.5'
+version = '0.0.6'
 
 sourceCompatibility = '11'
 
@@ -72,6 +72,8 @@ dependencyManagement {
 }
 
 dependencies {
+    compileOnly 'org.springframework.boot:spring-boot-starter-amqp'
+    compileOnly 'org.springframework.boot:spring-boot-starter-json'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 }
