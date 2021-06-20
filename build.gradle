@@ -6,7 +6,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
-group = 'com.example.universe.simulator.common'
+group = 'com.example.universe.simulator'
 version = '0.0.6'
 
 sourceCompatibility = '11'
