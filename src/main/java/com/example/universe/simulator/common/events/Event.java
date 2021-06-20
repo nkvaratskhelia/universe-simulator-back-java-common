@@ -6,14 +6,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
 import java.time.OffsetDateTime;
 
 @Getter @Setter
 @Builder
 @EqualsAndHashCode
 @ToString
-public class Event implements Serializable {
+public class Event {
 
     private String type;
 
