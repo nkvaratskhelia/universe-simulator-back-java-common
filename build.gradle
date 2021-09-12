@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'com.example.universe.simulator'
-version = '0.0.12'
+version = '0.1.0'
 
 sourceCompatibility = '11'
 
@@ -49,6 +49,23 @@ jacocoTestReport {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:2.5.4'
+    }
+}
+
+dependencies {
+    compileOnly 'org.springframework.boot:spring-boot-starter-amqp'
+    compileOnly 'org.springframework.boot:spring-boot-starter-json'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+}
+
 publishing {
     repositories {
         maven {
@@ -65,21 +82,4 @@ publishing {
             from components.java
         }
     }
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencyManagement {
-    imports {
-        mavenBom 'org.springframework.boot:spring-boot-dependencies:2.5.4'
-    }
-}
-
-dependencies {
-    compileOnly 'org.springframework.boot:spring-boot-starter-amqp'
-    compileOnly 'org.springframework.boot:spring-boot-starter-json'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
 }
