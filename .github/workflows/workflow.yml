@@ -21,6 +21,7 @@ jobs:
           arguments: sonarqube --info --stacktrace --warning-mode all
         env:
           US_SONARQUBE_TOKEN: ${{ secrets.US_SONARQUBE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # publish
       - uses: burrunan/gradle-cache-action@v1
         if: github.ref == 'refs/heads/master'
