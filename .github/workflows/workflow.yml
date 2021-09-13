@@ -11,12 +11,14 @@ jobs:
           java-version: '11'
           cache: 'gradle'
       - uses: gradle/wrapper-validation-action@v1
-      # build, test & test coverage
+      # build, test & code coverage
       - uses: burrunan/gradle-cache-action@v1
+        name: build, test & code coverage
         with:
-          arguments: build jacocoTestCoverageVerification --info --stacktrace --warning-mode all
+          arguments: build jacocoTestReport jacocoTestCoverageVerification --info --stacktrace --warning-mode all
       # sonarqube
       - uses: burrunan/gradle-cache-action@v1
+        name: sonarqube
         with:
           arguments: sonarqube --info --stacktrace --warning-mode all
         env:
@@ -24,6 +26,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # publish
       - uses: burrunan/gradle-cache-action@v1
+        name: publish
         if: github.ref == 'refs/heads/master'
         with:
           arguments: publish --info --stacktrace --warning-mode all
