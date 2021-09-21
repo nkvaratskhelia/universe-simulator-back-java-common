@@ -5,6 +5,7 @@ plugins {
     id 'maven-publish'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'org.sonarqube' version '3.3'
+    id 'org.owasp.dependencycheck' version '6.3.1'
 }
 
 group = 'com.example.universe.simulator'
@@ -56,6 +57,10 @@ sonarqube {
         property 'sonar.login', System.getenv('US_SONARQUBE_TOKEN')
         property 'sonar.coverage.exclusions', coverageExclusions
     }
+}
+
+dependencyCheck {
+    failBuildOnCVSS = 7
 }
 
 publishing {
