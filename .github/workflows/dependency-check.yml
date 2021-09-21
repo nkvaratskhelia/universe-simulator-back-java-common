@@ -1,4 +1,6 @@
-on: push
+on:
+  schedule:
+    - cron: '14 07 * * *'
 
 jobs:
   build:
