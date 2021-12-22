@@ -5,7 +5,7 @@ Library with common code for use in other projects.
 #This file contains documentation which is common across all projects.#
 
 == Language
-`Java 11`
+`Java 17`
 
 == Build tool
 `Gradle Wrapper`
@@ -53,7 +53,7 @@ automatically excludes such code from processing.
 
 ==== Rules
 100% code coverage is enforced by the `jacocoTestCoverageVerification` task. You can run this task
-with: `./gradlew jacocoTestCoverageVerification`. If the coverage falls below 100%, the task will 
+with: `./gradlew jacocoTestCoverageVerification`. If the coverage falls below 100%, the task will
 fail.
 
 == CI/CD

@@ -5,11 +5,11 @@ plugins {
     id 'maven-publish'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'org.sonarqube' version '3.3'
-    id 'org.owasp.dependencycheck' version '6.5.0.1'
+    id 'org.owasp.dependencycheck' version '6.5.1'
 }
 
 group = 'com.example.universe.simulator'
-version = '0.2.2'
+version = '0.2.3'
 sourceCompatibility = '17'
 
 idea {
@@ -87,7 +87,7 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom 'org.springframework.boot:spring-boot-dependencies:2.6.1'
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:2.6.2'
     }
 }
 
