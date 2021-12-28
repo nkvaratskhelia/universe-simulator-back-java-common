@@ -32,21 +32,16 @@ services:
       - ~/universe-simulator/universe-simulator-key.pem:/vault/universe-simulator-key.pem
 
   rabbitmq:
-    image: rabbitmq:management
+    image: rabbitmq:3.9.11-management
     container_name: universe-simulator-rabbitmq
     restart: always
-    environment:
-      - RABBITMQ_DEFAULT_USER=username
-      - RABBITMQ_DEFAULT_PASS=password
-      - RABBITMQ_SSL_CACERTFILE=/var/lib/rabbitmq/universe-simulator-cert.pem
-      - RABBITMQ_SSL_CERTFILE=/var/lib/rabbitmq/universe-simulator-cert.pem
-      - RABBITMQ_SSL_KEYFILE=/var/lib/rabbitmq/universe-simulator-key.pem
-      - RABBITMQ_SSL_FAIL_IF_NO_PEER_CERT=false
+    hostname: universe-simulator
     ports:
       - 5671:5671
       - 15671:15671
     volumes:
       - rabbitmq:/var/lib/rabbitmq
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
       - ~/universe-simulator/universe-simulator-cert.pem:/var/lib/rabbitmq/universe-simulator-cert.pem
       - ~/universe-simulator/universe-simulator-key.pem:/var/lib/rabbitmq/universe-simulator-key.pem
 
@@ -54,11 +49,9 @@ services:
     image: openzipkin/zipkin
     container_name: universe-simulator-zipkin
     restart: always
-    depends_on:
-      - rabbitmq
     environment:
       - RABBIT_ADDRESSES=rabbitmq:5671
-      - RABBIT_USER=username
+      - RABBIT_USER=user
       - RABBIT_PASSWORD=password
       - RABBIT_USE_SSL=true
     ports:
