@@ -15,8 +15,8 @@ Gradle wrapper properties can be found in the `gradle/wrapper/gradle-wrapper.pro
 
 === Updating
 You can update gradle wrapper with: `./gradlew wrapper --gradle-version=x.x.x --distribution-type=all
---gradle-distribution-sha256-sum=some-checksome`. Valid gradle distribution checksomes can be found at
-gradle's https://gradle.org/release-checksums/[Checksome reference page].
+--gradle-distribution-sha256-sum=some-checksome`. Valid gradle distribution checksomes can be found
+at gradle's https://gradle.org/release-checksums/[Checksome reference page].
 
 == Framework
 `Spring Boot`
@@ -25,9 +25,9 @@ gradle's https://gradle.org/release-checksums/[Checksome reference page].
 You can have as many spring boot profiles as needed. Profiles usually map to environments (dev,
 staging, prod). If you need to override some properties for an environment, add a new
 `bootstrap-xxx.properties` or `application-xxx.properties` file, where xxx is the name of your
-profile. Keep in mind that the `test` profile is reserved for testing purposes and the `local` profile
-for local development. `bootstrap-local.properties` and `application-local.properties` files are
-excluded from git.
+profile. Keep in mind that the `test` profile is reserved for testing purposes and the `local`
+profile for local development. `bootstrap-local.properties` and `application-local.properties` files
+are excluded from git.
 
 == Testing
 
@@ -41,8 +41,8 @@ excluded from git.
 `JaCoCo` plugin is used to analyze code coverage.
 
 ==== Report
-You can generate the test coverage report with: `./gradlew jacocoTestReport`. The report can be viewed
-by opening the `build/reports/jacoco/test/html/index.html` file.
+You can generate the test coverage report with: `./gradlew jacocoTestReport`. The report can be
+viewed by opening the `build/reports/jacoco/test/html/index.html` file.
 
 ==== Exclusions
 Classes which are excluded from jacoco reports are described in the `jacocoExclusions` method in
@@ -72,7 +72,7 @@ You need to add github packages url to your repository secrets.
 
 == Secrets & configuration
 `Hashicorp Vault` is used to store secrets and other variable configuration. If you stop or restart
-vault container, vault gets sealed, and you'll need to unseal it to be able to use it again.
+the vault container, vault gets sealed, and you'll need to unseal it to be able to use it again.
 
 == HTTPS/TLS
 All services run on `HTTPS/TLS`. Additionally, `HTTP/2` protocol is also enabled.

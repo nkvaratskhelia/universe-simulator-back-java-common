@@ -1,35 +1,19 @@
 services:
   vault:
-    image: vault
+    image: vault:1.9.2
     container_name: universe-simulator-vault
     restart: always
     cap_add:
       - IPC_LOCK
     command: server
-    environment:
-      - 'VAULT_LOCAL_CONFIG=
-        {
-          "storage": {
-            "file": {
-              "path": "/vault/file"
-            }
-          },
-          "listener": {
-            "tcp": {
-              "address": "0.0.0.0:8200",
-              "tls_cert_file": "/vault/universe-simulator-cert.pem",
-              "tls_key_file": "/vault/universe-simulator-key.pem"
-            }
-          },
-          "ui": true
-        }'
     ports:
       - 8200:8200
     volumes:
-      - vault-logs:/vault/logs
       - vault-file:/vault/file
-      - ~/universe-simulator/universe-simulator-cert.pem:/vault/universe-simulator-cert.pem
-      - ~/universe-simulator/universe-simulator-key.pem:/vault/universe-simulator-key.pem
+      - vault-logs:/vault/logs
+      - ./vault.json:/vault/config/vault.json
+      - ~/universe-simulator/universe-simulator-cert.pem:/vault/file/universe-simulator-cert.pem
+      - ~/universe-simulator/universe-simulator-key.pem:/vault/file/universe-simulator-key.pem
 
   rabbitmq:
     image: rabbitmq:3.9.11-management
@@ -58,6 +42,6 @@ services:
       - 9411:9411
 
 volumes:
-  vault-logs:
   vault-file:
+  vault-logs:
   rabbitmq:

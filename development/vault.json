@@ -1,0 +1,15 @@
+{
+  "storage": {
+    "file": {
+      "path": "/vault/file"
+    }
+  },
+  "listener": {
+    "tcp": {
+      "address": "0.0.0.0:8200",
+      "tls_cert_file": "/vault/file/universe-simulator-cert.pem",
+      "tls_key_file": "/vault/file/universe-simulator-key.pem"
+    }
+  },
+  "ui": true
+}
