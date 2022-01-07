@@ -16,7 +16,7 @@ services:
       - ~/universe-simulator/universe-simulator-key.pem:/vault/file/universe-simulator-key.pem
 
   rabbitmq:
-    image: rabbitmq:3.9.11-management
+    image: rabbitmq:3.9.12-management
     container_name: universe-simulator-rabbitmq
     restart: always
     hostname: universe-simulator
