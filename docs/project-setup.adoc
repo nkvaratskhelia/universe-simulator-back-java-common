@@ -49,8 +49,8 @@ profile-specific paths as needed (e.g. `application-name/staging, application-na
 syntax (e.g. `${server-port}`).
 
 == Environment variables
-Add the following OS environment variables: `US_VAULT_HOST, US_VAULT_PORT, US_VAULT_TOKEN,
-US_CONFIG_SERVER_URL, US_KEYSTORE_PASSWORD, US_GITHUB_PACKAGES_USER, US_GITHUB_PACKAGES_TOKEN`.
+Add the following OS environment variables: `US_VAULT_HOST, US_VAULT_TOKEN, US_CONFIG_SERVER_URL,
+US_KEYSTORE_PASSWORD, US_GITHUB_PACKAGES_USER, US_GITHUB_PACKAGES_TOKEN`.
 
 == Properties file
 Add `bootstrap-local.properties` file and if needed, override any properties from the
