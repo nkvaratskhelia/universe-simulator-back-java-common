@@ -2,7 +2,7 @@
 
 Library with common code for use in other projects.
 
-#This file contains documentation which is common across all projects.#
+#This file contains documentation which is common for all projects.#
 
 == Language
 `Java 17`
@@ -21,13 +21,15 @@ at gradle's https://gradle.org/release-checksums/[Checksome reference page].
 == Framework
 `Spring Boot`
 
+=== Configuration
+`Spring Cloud Config Server` is used for managing configuration.
+
 === Profiles
 You can have as many spring boot profiles as needed. Profiles usually map to environments (dev,
 staging, prod). If you need to override some properties for an environment, add a new
-`bootstrap-xxx.properties` or `application-xxx.properties` file, where xxx is the name of your
-profile. Keep in mind that the `test` profile is reserved for testing purposes and the `local`
-profile for local development. `bootstrap-local.properties` and `application-local.properties` files
-are excluded from git.
+`application-xxx.properties` file, where xxx is the name of your profile. Keep in mind that the
+`test` profile is reserved for testing purposes and the `local` profile for local development.
+`application-local.properties` file is excluded from git.
 
 == Testing
 
@@ -45,7 +47,7 @@ You can generate the test coverage report with: `./gradlew jacocoTestReport`. Th
 viewed by opening the `build/reports/jacoco/test/html/index.html` file.
 
 ==== Exclusions
-Classes which are excluded from jacoco reports are described in the `jacocoExclusions` method in
+Classes which are excluded from jacoco reports are described in the `coverageExclusions` list in
 `build.gradle`. Additionally, all lombok generated code is also excluded. This is achieved with the
 `lombok.addLombokGeneratedAnnotation = true` parameter in the `lombok.config` file. If this parameter
 is present, lombok will annotate all generated code with its `@Generated` annotation and jacoco
@@ -65,14 +67,11 @@ fail.
 * Install java
 * Validate `gradle-wrapper.jar`
 * Build, test and check code coverage
+* SonarQube analysis
 * _In case of common library:_ Publish a package to `GitHub Packages` with gradle's `publish` task.
-You need to add github packages url to your repository secrets.
+You need to add github packages credentials to your repository secrets.
 * _In case of other projects:_ Build a docker image with gradle's `bootBuildImage` task and upload to
 `Docker Hub`. You need to add docker registry credentials to your repository secrets.
-
-== Secrets & configuration
-`Hashicorp Vault` is used to store secrets and other variable configuration. If you stop or restart
-the vault container, vault gets sealed, and you'll need to unseal it to be able to use it again.
 
 == HTTPS/TLS
 All services run on `HTTPS/TLS`. Additionally, `HTTP/2` protocol is also enabled.

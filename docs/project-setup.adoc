@@ -1,6 +1,6 @@
 = Project setup
 
-#This file contains documentation which is common across all projects.#
+#This file contains documentation which is common for all projects.#
 
 == Https/TLS
 You need to have the following files in your `~/universe-simulator` directory:
@@ -30,31 +30,23 @@ SAN=dns:localhost,ip:127.0.0.1`. Make sure to enter some valid country code when
 * Add the certificate to your browser's (or OS) trusted certificate list.
 
 == Software
-Go to the `development` directory and run `docker-compose -p universe-simulator up -d` to install all
-required software.
+Go to the `development` directory (in the `common` project and in other projects where it exists) and
+run `docker-compose -p universe-simulator up -d` to install all required software components.
 
-== Vault
-* When vault is up and running, go to vault ui at `localhost:8200` and follow the setup instructions.
+== Configuration
 
-* After the setup, log in and enable a new `KV` engine with `universe-simulator` as path. This root
-path maps to the `spring.cloud.vault.kv.backend` property in `bootstrap.properties`.
+=== Environment variables
+Add the following OS environment variables:
 
-* In the `universe-simulator` engine create a secret with `application-name/local` as path.
-`application-name` maps to the `spring.application.name` property in `bootstrap.properties` and
-`local` maps to your spring boot profile used for local development. Similarly, you can add as many
-profile-specific paths as needed (e.g. `application-name/staging, application-name/prod`).
+* `US_GITHUB_PACKAGES_USER`
+* `US_GITHUB_PACKAGES_TOKEN`
 
-* Add all required properties from the `bootstrap.properties` file to the
-`universe-simulator/application-name/local` path. You can identify such properties by the kebab-case
-syntax (e.g. `${server-port}`).
+=== Properties
+Create a `application-local.properties` file next to `application.properties` in all projects except
+`common` and `config-server` and add the following properties:
 
-== Environment variables
-Add the following OS environment variables: `US_VAULT_HOST, US_VAULT_TOKEN, US_CONFIG_SERVER_URL,
-US_KEYSTORE_PASSWORD, US_GITHUB_PACKAGES_USER, US_GITHUB_PACKAGES_TOKEN`.
-
-== Properties file
-Add `bootstrap-local.properties` file and if needed, override any properties from the
-`bootstrap.properties` file.
+* `spring.config.import=configserver:https://localhost:8888`
+* `server.port`
 
 == Running the application
 You can run the application with the `local` profile from your IDE or with the following command:
