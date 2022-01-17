@@ -43,11 +43,11 @@ Add the following OS environment variables:
 
 === Properties
 Create a `application-local.properties` file next to `application.properties` in all projects except
-`common` and `config-server` and add the following properties:
+`config-server` and add the following properties:
 
 * `spring.config.import=configserver:https://localhost:8888`
 * `server.port`
 
-== Running the application
-You can run the application with the `local` profile from your IDE or with the following command:
+== Running an application
+You can run an application with the `local` profile from your IDE or with the following command:
 `./gradlew bootRun --args='--spring.profiles.active=local'`.
