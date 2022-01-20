@@ -1,6 +1,6 @@
 services:
   rabbitmq:
-    image: rabbitmq:3.9.12-management
+    image: rabbitmq:3.9.13-management
     container_name: universe-simulator-rabbitmq
     restart: always
     hostname: universe-simulator
