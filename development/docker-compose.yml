@@ -1,4 +1,13 @@
 services:
+  consul:
+    image: consul:1.11.2
+    container_name: universe-simulator-consul
+    restart: always
+    ports:
+      - 8500:8500
+    volumes:
+      - consul:/consul/data
+
   rabbitmq:
     image: rabbitmq:3.9.13-management
     container_name: universe-simulator-rabbitmq
@@ -26,4 +35,5 @@ services:
       - 9411:9411
 
 volumes:
+  consul:
   rabbitmq:
