@@ -7,6 +7,9 @@ services:
       - 8500:8500
     volumes:
       - consul:/consul/data
+      - ./consul.json:/consul/config/consul.json
+      - ~/universe-simulator/universe-simulator-cert.pem:/consul/data/universe-simulator-cert.pem
+      - ~/universe-simulator/universe-simulator-key.pem:/consul/data/universe-simulator-key.pem
 
   rabbitmq:
     image: rabbitmq:3.9.13-management
