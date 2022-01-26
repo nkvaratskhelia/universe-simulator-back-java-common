@@ -76,8 +76,11 @@ You need to add github packages credentials to your repository secrets.
 == HTTPS/TLS
 All services run on `HTTPS/TLS`. Additionally, `HTTP/2` protocol is also enabled.
 
-== Messaging
-`RabbitMQ`
+== Config server & Service registry
+`Consul`
 
 == Distributed tracing
 `Sleuth` `Zipkin`
+
+== Messaging
+`RabbitMQ`

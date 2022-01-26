@@ -1,0 +1,20 @@
+services:
+  vault:
+    image: vault:1.9.2
+    container_name: universe-simulator-vault
+    restart: always
+    cap_add:
+      - IPC_LOCK
+    command: server
+    ports:
+      - 8200:8200
+    volumes:
+      - vault-file:/vault/file
+      - vault-logs:/vault/logs
+      - ./vault.json:/vault/config/vault.json
+      - ~/universe-simulator/universe-simulator-cert.pem:/vault/file/universe-simulator-cert.pem
+      - ~/universe-simulator/universe-simulator-key.pem:/vault/file/universe-simulator-key.pem
+
+volumes:
+  vault-file:
+  vault-logs:

@@ -1,8 +1,16 @@
 {
+  "addresses": {
+    "https": "0.0.0.0"
+  },
   "ports": {
     "http": -1,
     "https": 8500
   },
   "cert_file": "/consul/data/universe-simulator-cert.pem",
-  "key_file": "/consul/data/universe-simulator-key.pem"
+  "key_file": "/consul/data/universe-simulator-key.pem",
+  "server": true,
+  "bootstrap": true,
+  "ui_config": {
+    "enabled": true
+  }
 }
