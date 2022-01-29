@@ -82,5 +82,8 @@ All services run on `HTTPS/TLS`. Additionally, `HTTP/2` protocol is also enabled
 == Distributed tracing
 `Sleuth` `Zipkin`
 
+== Logging
+`Elasticsearch` & `Kibana`
+
 == Messaging
 `RabbitMQ`
