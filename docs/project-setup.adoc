@@ -67,7 +67,7 @@ available to all services for `local` profile only. Add the following properties
 {
   "spring.rabbitmq.password": "iF4>32vnD?eUfJ_D*",
   "spring.rabbitmq.username": "universesimulator",
-  "app.logstash.url": "localhost:4560"
+  "app.logstash-url": "localhost:4560"
 }
 ----
 
