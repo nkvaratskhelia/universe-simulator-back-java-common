@@ -59,7 +59,9 @@ services:
     container_name: universe-simulator-logstash
     restart: always
     ports:
-      - 5044:5044
+      - 4560:4560
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
 
   rabbitmq:
     image: rabbitmq:3.9.13-management
