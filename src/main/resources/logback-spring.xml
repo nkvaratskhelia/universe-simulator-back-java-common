@@ -1,0 +1,16 @@
+<configuration>
+    <springProperty name="loggingPattern" source="logging.pattern.console"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                ${loggingPattern}
+            </pattern>
+        </encoder>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
