@@ -1,4 +1,4 @@
-package com.example.universe.simulator.common.events;
+package com.example.universe.simulator.common.dtos;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -12,7 +12,7 @@ import java.time.OffsetDateTime;
 @Builder
 @EqualsAndHashCode
 @ToString
-public class Event {
+public class EventDto {
 
     private String type;
 
