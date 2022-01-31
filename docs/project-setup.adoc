@@ -65,8 +65,8 @@ available to all services for `local` profile only. Add the following properties
 [source, json]
 ----
 {
-  "spring.rabbitmq.password": "iF4>32vnD?eUfJ_D*",
-  "spring.rabbitmq.username": "universesimulator",
+  "spring.rabbitmq.username": "{your-rabbitmq-username}",
+  "spring.rabbitmq.password": "{your-rabbitmq-password}",
   "app.logstash-url": "localhost:4560"
 }
 ----
@@ -80,8 +80,10 @@ spring boot profile.
 Create a `application-local.properties` file next to `application.properties` in all projects except
 `common` and add the following properties:
 
-* `spring.config.import=consul:`
-* `server.port={port-of-your-choice}`
+----
+spring.config.import=consul:
+server.port={port-of-your-choice}
+----
 
 === Environment variables
 Add the following OS environment variables:
