@@ -18,6 +18,5 @@ public class EventDto {
 
     private String data;
 
-    @EqualsAndHashCode.Exclude
     private OffsetDateTime time;
 }
