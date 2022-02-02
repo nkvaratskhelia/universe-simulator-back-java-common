@@ -1,13 +1,10 @@
 <configuration>
-    <springProperty name="loggingPattern" source="logging.pattern.console"/>
     <springProperty name="logstashUrl" source="app.logstash-url"/>
     <springProperty name="appName" source="spring.application.name"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>
-                ${loggingPattern}
-            </pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level)[${appName},%X{traceId},%X{spanId}] [%thread] [%logger] :: %msg%n</pattern>
         </encoder>
     </appender>
 

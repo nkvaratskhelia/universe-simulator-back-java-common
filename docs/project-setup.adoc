@@ -51,7 +51,6 @@ available to all services for all profiles. Add the following properties with `d
   "server.ssl.key-store-password": "{your-key-store-password}",
   "server.http2.enabled": true,
   "server.shutdown": "graceful",
-  "logging.pattern.console": "%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level)[${spring.application.name},%X{traceId},%X{spanId}] [%thread] [%logger] :: %msg%n",
   "spring.sleuth.sampler.probability": 1.0,
   "spring.zipkin.sender.type": "rabbit",
   "spring.rabbitmq.ssl.enabled": true,
