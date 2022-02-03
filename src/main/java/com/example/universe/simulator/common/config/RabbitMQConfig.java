@@ -11,18 +11,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    @Value("${spring.rabbitmq.template.exchange}")
-    private String exchangeName;
-
     @Bean
     public Jackson2JsonMessageConverter messageConverter(ObjectMapper objectMapper) {
         return new Jackson2JsonMessageConverter(objectMapper);
     }
 
     @Bean
-    TopicExchange topicExchange() {
+    TopicExchange topicExchange(@Value("${spring.rabbitmq.template.exchange}") String exchange) {
         return ExchangeBuilder
-            .topicExchange(exchangeName)
+            .topicExchange(exchange)
             .build();
     }
 }
