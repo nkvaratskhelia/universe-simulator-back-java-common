@@ -1,8 +1,8 @@
 = Project description
 
-Library with common code for use in other projects.
+Library with common code and config for use in other projects.
 
-#This file contains documentation which is common for all projects.#
+#This file contains documentation which applies to all projects.#
 
 == Language
 `Java 17`
@@ -11,24 +11,24 @@ Library with common code for use in other projects.
 `Gradle Wrapper`
 
 === Config
-Gradle wrapper properties can be found in the `gradle/wrapper/gradle-wrapper.properties` file.
+Gradle wrapper properties can be found in the
+`gradle/wrapper/gradle-wrapper.properties` file.
 
 === Updating
-You can update gradle wrapper with: `./gradlew wrapper --gradle-version=x.x.x --distribution-type=all
---gradle-distribution-sha256-sum=some-checksome`. Valid gradle distribution checksomes can be found
-at gradle's https://gradle.org/release-checksums/[Checksome reference page].
+You can update gradle wrapper with: `./gradlew wrapper --gradle-version={x.x.x}
+--distribution-type=all --gradle-distribution-sha256-sum={some-checksome}`.
+Valid gradle distribution checksums can be found at the
+https://gradle.org/release-checksums/[Checksum reference page].
 
 == Framework
 `Spring Boot`
 
-=== Configuration
-`Spring Cloud Config Server` is used for managing configuration.
-
 === Profiles
-You can have as many spring boot profiles as needed. Profiles usually map to environments (dev,
-staging, prod). If you need to override some properties for an environment, add a new
-`application-xxx.properties` file, where xxx is the name of your profile. Keep in mind that the
-`test` profile is reserved for testing purposes and the `local` profile for local development.
+You can have as many spring boot profiles as needed. Profiles usually map
+to environments (dev, staging, prod). If you need to override some properties
+for an environment, add a new `application-{xxx}.properties` file, where xxx is
+the name of your profile. Keep in mind that the `test` profile is reserved for
+testing purposes and the `local` profile for local development.
 `application-local.properties` file is excluded from git.
 
 == Testing
@@ -43,24 +43,27 @@ staging, prod). If you need to override some properties for an environment, add 
 `JaCoCo` plugin is used to analyze code coverage.
 
 ==== Report
-You can generate the test coverage report with: `./gradlew jacocoTestReport`. The report can be
-viewed by opening the `build/reports/jacoco/test/html/index.html` file.
+You can generate the test coverage report with: `./gradlew jacocoTestReport`.
+The report can be viewed by opening the
+`build/reports/jacoco/test/html/index.html` file.
 
 ==== Exclusions
-Classes which are excluded from jacoco reports are described in the `coverageExclusions` list in
-`build.gradle`. Additionally, all lombok generated code is also excluded. This is achieved with the
-`lombok.addLombokGeneratedAnnotation = true` parameter in the `lombok.config` file. If this parameter
-is present, lombok will annotate all generated code with its `@Generated` annotation and jacoco
+Classes which are excluded from jacoco reports are described in the
+`coverageExclusions` list in `build.gradle`. Additionally, all lombok
+generated code is also excluded. This is achieved with the
+`lombok.addLombokGeneratedAnnotation = true` parameter in the
+`lombok.config` file. If this parameter is present, lombok will annotate
+all generated code with its `@Generated` annotation and jacoco
 automatically excludes such code from processing.
 
 ==== Rules
-100% code coverage is enforced by the `jacocoTestCoverageVerification` task. You can run this task
-with: `./gradlew jacocoTestCoverageVerification`. If the coverage falls below 100%, the task will
-fail.
+100% code coverage is enforced by the `jacocoTestCoverageVerification`
+task. You can run this task with: `./gradlew jacocoTestCoverageVerification`.
+If the coverage falls below 100%, the task will fail.
 
 == CI/CD
-`Github Actions` is used for CI/CD automation. The workflow file can be found in the
-`.github/workflows` directory.
+`Github Actions` is used for CI/CD automation. The workflow file can be found
+in the `.github/workflows` directory.
 
 === Steps
 * Check out code from the repository
@@ -68,13 +71,16 @@ fail.
 * Validate `gradle-wrapper.jar`
 * Build, test and check code coverage
 * SonarQube analysis
-* _In case of common library:_ Publish a package to `GitHub Packages` with gradle's `publish` task.
-You need to add github packages credentials to your repository secrets.
-* _In case of other projects:_ Build a docker image with gradle's `bootBuildImage` task and upload to
-`Docker Hub`. You need to add docker registry credentials to your repository secrets.
+* _In case of common library:_ Publish a package to `GitHub Packages` with
+gradle's `publish` task. You need to add github packages credentials to
+your repository secrets.
+* _In case of other projects:_ Build a docker image with gradle's
+`bootBuildImage` task and upload to `Docker Hub`. You need to add docker
+registry credentials to your repository secrets.
 
 == HTTPS/TLS
-All services run on `HTTPS/TLS`. Additionally, `HTTP/2` protocol is also enabled.
+All services run on `HTTPS/TLS`. Additionally, `HTTP/2` protocol is also
+enabled.
 
 == Config server & Service registry
 `Consul`
@@ -83,7 +89,7 @@ All services run on `HTTPS/TLS`. Additionally, `HTTP/2` protocol is also enabled
 `Sleuth` `Zipkin`
 
 == Logging
-`Elasticsearch` & `Kibana`
+`Logstash`, `Elasticsearch` & `Kibana`
 
 == Messaging
 `RabbitMQ`
