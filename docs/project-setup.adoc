@@ -119,13 +119,13 @@ Go to `Stack Management > Index Management > Index Templates` in
 ----
 
 === Lifecycle policies
-Go to `Stack Management > Index Lifecycle Policies`
-and add `zipkin-span_template` and `logstash` to the `30-days-default`
+Go to `Stack Management > Index Lifecycle Policies` and add
+`zipkin-span_template` and `logstash` to the `30-days-default`
 policy.
 
 === Index patterns
-Go to `Stack Management > Index Patterns` and add
-the following index pattern:
+Go to `Stack Management > Index Patterns` and add the following index
+pattern:
 
 * Name: `logstash-*`
 * Timestamp field: `@timestamp`

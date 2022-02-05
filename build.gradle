@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'com.example.universe.simulator'
-version = '0.6.1'
+version = '0.6.2'
 sourceCompatibility = '17'
 
 idea {
@@ -18,7 +18,7 @@ idea {
     }
 }
 
-test {
+tasks.named('test') {
     useJUnitPlatform()
 }
 
