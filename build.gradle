@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'com.example.universe.simulator'
-version = '0.6.2'
+version = '0.6.3'
 sourceCompatibility = '17'
 
 idea {
@@ -94,6 +94,7 @@ dependencyManagement {
 dependencies {
     compileOnly 'org.springframework.boot:spring-boot-starter-amqp'
     compileOnly 'org.springframework.boot:spring-boot-starter-json'
+    compileOnly 'org.springframework.boot:spring-boot-starter-test'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 }
