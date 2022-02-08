@@ -15,7 +15,7 @@ necessary files, follow these steps:
 * In the `~/universe-simulator` directory create a keystore file with a
 self-signed certificate and private key: `keytool -genkeypair -v
 -alias universe-simulator -keystore universe-simulator.p12 -keyalg RSA
--validity 365 -ext SAN=dns:localhost,ip:127.0.0.1`.
+-validity 365 -ext SAN=dns:localhost,ip:127.0.0.1`. +
 #Enter some valid country code (e.g. _GE_) when prompted.#
 
 * Extract the certificate from the keystore with:
@@ -28,7 +28,7 @@ self-signed certificate and private key: `keytool -genkeypair -v
 
 * Add the certificate to your java `cacerts` truststore:
 `keytool -importcert -v -cacerts -alias universe-simulator
--file universe-simulator-cert.pem`
+-file universe-simulator-cert.pem` +
 #Run the command with admin privileges. The default password for
 java's _cacerts_ truststore is _changeit_.#
 
@@ -119,9 +119,17 @@ Go to `Stack Management > Index Management > Index Templates` in
 ----
 
 === Lifecycle policies
-Go to `Stack Management > Index Lifecycle Policies` and add
-`zipkin-span_template` and `logstash` to the `30-days-default`
-policy.
+Go to `Stack Management > Index Lifecycle Policies` and add policies for
+`zipkin` and `logstash`. E.g.:
+
+* Policy name: `zipkin`
+* Hot phase: Delete data after this phase
+* Hot phase > Rollover: disable `Use recommended defaults`
+* Hot phase > Rollover: disable `Enable rollover`
+
+image::project-setup-elk-lifecycle-policies.png[]
+
+#Add the new policies to the respective index templates.#
 
 === Index patterns
 Go to `Stack Management > Index Patterns` and add the following index
