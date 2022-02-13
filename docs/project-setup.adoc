@@ -10,12 +10,12 @@ keystore can be either self-signed or provided by a CA. You can use `openssl`
 and java's `keytool` utility for working with keystore. To create all the
 necessary files, follow these steps:
 
-* Create a `~/universe-simulator` directory
+* Create a `~/universe-simulator` directory.
 
 * In the `~/universe-simulator` directory create a keystore file with a
 self-signed certificate and private key: `keytool -genkeypair -v
 -alias universe-simulator -keystore universe-simulator.p12 -keyalg RSA
--validity 365 -ext SAN=dns:localhost,ip:127.0.0.1`. +
+-validity 365 -ext SAN=dns:localhost,ip:127.0.0.1` +
 #Enter some valid country code (e.g. _GE_) when prompted.#
 
 * Extract the certificate from the keystore with:
@@ -129,11 +129,13 @@ Go to `Stack Management > Index Lifecycle Policies` and add policies for
 
 image::project-setup-elk-lifecycle-policies.png[]
 
-#Add the new policies to the respective index templates.#
+* Add `logstash` policy to the `logstash` index template.
+* Add `zipkin` policy to the `zipkin-span_template` index template. +
+#This policy will be created automatically by zipkin.#
 
 === Index patterns
-Go to `Stack Management > Index Patterns` and add the following index
-pattern:
+After starting applications, go to `Stack Management > Index Patterns`
+and add the following index pattern:
 
 * Name: `logstash-*`
 * Timestamp field: `@timestamp`

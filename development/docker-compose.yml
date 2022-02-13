@@ -23,7 +23,6 @@ services:
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
-      - xpack.security.enabled=false
     ports:
       - 9200:9200
       - 9300:9300
@@ -67,7 +66,7 @@ services:
     environment:
       - RABBIT_ADDRESSES=rabbitmq:5671
       - RABBIT_USER=user
-      - RABBIT_PASSWORD=chromecomplainedsohereitis123
+      - RABBIT_PASSWORD=password
       - RABBIT_USE_SSL=true
       - STORAGE_TYPE=elasticsearch
       - ES_HOSTS=elasticsearch:9200
