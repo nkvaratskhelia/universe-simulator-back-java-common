@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'com.example.universe.simulator'
-version = '0.6.5'
+version = '0.6.6'
 sourceCompatibility = '17'
 
 idea {
