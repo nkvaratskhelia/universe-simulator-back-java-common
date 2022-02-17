@@ -60,7 +60,8 @@ the following properties with `data` as key:
   "spring.sleuth.sampler.probability": 1.0,
   "spring.zipkin.sender.type": "rabbit",
   "spring.rabbitmq.ssl.enabled": true,
-  "spring.rabbitmq.template.exchange": "universe-simulator"
+  "spring.rabbitmq.template.exchange": "universe-simulator",
+  "app.rabbitmq.event-queue": "event"
 }
 ----
 

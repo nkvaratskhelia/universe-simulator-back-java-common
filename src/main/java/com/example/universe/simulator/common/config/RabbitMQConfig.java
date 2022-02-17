@@ -17,9 +17,9 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    TopicExchange topicExchange(@Value("${spring.rabbitmq.template.exchange}") String exchange) {
+    TopicExchange exchange(@Value("${spring.rabbitmq.template.exchange}") String name) {
         return ExchangeBuilder
-            .topicExchange(exchange)
+            .topicExchange(name)
             .build();
     }
 }
