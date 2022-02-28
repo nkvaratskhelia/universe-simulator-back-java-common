@@ -9,8 +9,6 @@ services:
     volumes:
       - consul:/consul/data
       - ./consul.json:/consul/config/consul.json
-      - ~/universe-simulator/universe-simulator-cert.pem:/consul/data/universe-simulator-cert.pem
-      - ~/universe-simulator/universe-simulator-key.pem:/consul/data/universe-simulator-key.pem
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
@@ -51,23 +49,20 @@ services:
     restart: always
     hostname: universe-simulator
     ports:
-      - 5671:5671
-      - 15671:15671
+      - 5672:5672
+      - 15672:15672
     volumes:
       - rabbitmq:/var/lib/rabbitmq
       - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
-      - ~/universe-simulator/universe-simulator-cert.pem:/var/lib/rabbitmq/universe-simulator-cert.pem
-      - ~/universe-simulator/universe-simulator-key.pem:/var/lib/rabbitmq/universe-simulator-key.pem
 
   zipkin:
     image: openzipkin/zipkin:2.23.16
     container_name: universe-simulator-zipkin
     restart: always
     environment:
-      - RABBIT_ADDRESSES=rabbitmq:5671
+      - RABBIT_ADDRESSES=rabbitmq:5672
       - RABBIT_USER=user
       - RABBIT_PASSWORD=password
-      - RABBIT_USE_SSL=true
       - STORAGE_TYPE=elasticsearch
       - ES_HOSTS=elasticsearch:9200
       - ES_TEMPLATE_PRIORITY=1

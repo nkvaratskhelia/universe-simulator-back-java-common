@@ -15,24 +15,11 @@ necessary files, follow these steps:
 * In the `~/universe-simulator` directory create a keystore file with a
 self-signed certificate and private key: `keytool -genkeypair -v
 -alias universe-simulator -keystore universe-simulator.p12 -keyalg RSA
--validity 365 -ext SAN=dns:localhost,ip:127.0.0.1` +
-#Enter some valid country code (e.g. _GE_) when prompted.#
+-validity 365 -ext SAN=dns:localhost,ip:127.0.0.1`
 
 * Extract the certificate from the keystore with:
 `openssl pkcs12 -in universe-simulator.p12 -out universe-simulator-cert.pem
 -nokeys`
-
-* Extract the private key from the keystore with:
-`openssl pkcs12 -in universe-simulator.p12 -out universe-simulator-key.pem
--nodes -nocerts`
-
-* Add the certificate to your java `cacerts` truststore:
-`keytool -importcert -v -cacerts -alias universe-simulator
--file universe-simulator-cert.pem` +
-#Run the command with admin privileges. The default password for
-java's _cacerts_ truststore is _changeit_.#
-
-* Add the certificate to your operating system's trusted certificate list.
 
 == Software
 Go to the `development` directory (in the `common` project and in other
@@ -52,14 +39,13 @@ the following properties with `data` as key:
 ----
 {
   "spring.cloud.consul.discovery.scheme": "https",
-  "spring.cloud.consul.discovery.register-health-check": false,
-  "server.ssl.key-store": "file:${HOME}/universe-simulator/universe-simulator.p12",
+  "spring.cloud.consul.discovery.health-check-tls-skip-verify": true,
+  "server.ssl.key-store": "${HOME}/universe-simulator/universe-simulator.p12",
   "server.ssl.key-store-password": "{your-key-store-password}",
   "server.http2.enabled": true,
   "server.shutdown": "graceful",
   "spring.sleuth.sampler.probability": 1.0,
   "spring.zipkin.sender.type": "rabbit",
-  "spring.rabbitmq.ssl.enabled": true,
   "spring.rabbitmq.template.exchange": "universe-simulator",
   "app.rabbitmq.event-queue": "event"
 }
