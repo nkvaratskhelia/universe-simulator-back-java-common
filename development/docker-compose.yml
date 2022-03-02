@@ -18,6 +18,10 @@ services:
       memlock:
         soft: -1
         hard: -1
+    deploy:
+      resources:
+        limits:
+          memory: 2gb
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
