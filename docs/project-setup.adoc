@@ -47,6 +47,8 @@ the following properties with `data` as key:
   "spring.sleuth.sampler.probability": 1.0,
   "spring.zipkin.sender.type": "rabbit",
   "spring.rabbitmq.template.exchange": "universe-simulator",
+  "management.endpoints.web.exposure.include": "*",
+  "management.endpoint.health.show-details": "always",
   "app.rabbitmq.event-queue": "event"
 }
 ----
