@@ -4,6 +4,9 @@ Library with common code and config for use in other projects.
 
 #This file contains documentation which applies to all projects.#
 
+== Architecture
+`Microservices`
+
 == Language
 `Java 17`
 
@@ -20,8 +23,8 @@ You can update gradle wrapper with: `./gradlew wrapper --gradle-version={x.x.x}
 Valid gradle distribution checksums can be found at the
 https://gradle.org/release-checksums/[Checksum reference page].
 
-== Framework
-`Spring Boot`
+== Frameworks
+`Spring Boot` `Spring Cloud`
 
 === Profiles
 You can have as many spring boot profiles as needed. Profiles usually map
@@ -33,8 +36,8 @@ testing purposes and the `local` profile for local development.
 
 == Testing
 
-=== Unit tests
-`JUnit 5` `Mockito` `AssertJ`
+=== Tools
+`JUnit 5` `Mockito` `AssertJ` `Awaitility`
 
 === Integration tests
 `Testcontainers`
@@ -65,7 +68,8 @@ task. If the coverage falls below 100%, the task will fail.
 
 == CI/CD
 `Github Actions` is used for CI/CD automation. The workflow file can be found
-in the `.github/workflows` directory.
+in the `.github/workflows` directory. You need to add various secrets to your
+repository secrets.
 
 === Steps
 * Check out code from the repository
@@ -74,11 +78,9 @@ in the `.github/workflows` directory.
 * Build, test and check code coverage
 * SonarQube analysis
 * _In case of common library:_ Publish a package to `GitHub Packages` with
-gradle's `publish` task. You need to add github packages credentials to
-your repository secrets. +
+gradle's `publish` task. +
 _In case of other projects:_ Build a docker image with gradle's
-`bootBuildImage` task and upload to `Docker Hub`. You need to add docker
-registry credentials to your repository secrets.
+`bootBuildImage` task and upload to `Docker Hub`.
 
 == Security checks
 `org.owasp.dependencycheck` gradle plugin checks project dependencies
@@ -91,7 +93,7 @@ All services run with `HTTPS/TLS`. Additionally, `HTTP/2` protocol is also
 enabled.
 
 == Logging
-`Logstash`, `Elasticsearch` & `Kibana`
+`Elasticsearch` `Logstash` `Kibana`
 
 == Config server & Service discovery
 `Consul`
@@ -101,3 +103,6 @@ enabled.
 
 == Messaging
 `RabbitMQ`
+
+== Metrics
+`Spring Boot Actuator`
