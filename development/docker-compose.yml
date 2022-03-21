@@ -10,43 +10,6 @@ services:
       - consul:/consul/data
       - ./consul.json:/consul/config/consul.json
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.1
-    container_name: universe-simulator-elasticsearch
-    restart: always
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    deploy:
-      resources:
-        limits:
-          memory: 2gb
-    environment:
-      - discovery.type=single-node
-      - bootstrap.memory_lock=true
-    ports:
-      - 9200:9200
-      - 9300:9300
-    volumes:
-      - elasticsearch:/usr/share/elasticsearch/data
-
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.17.1
-    container_name: universe-simulator-kibana
-    restart: always
-    ports:
-      - 5601:5601
-
-  logstash:
-    image: docker.elastic.co/logstash/logstash:7.17.1
-    container_name: universe-simulator-logstash
-    restart: always
-    ports:
-      - 4560:4560
-    volumes:
-      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
-
   rabbitmq:
     image: rabbitmq:3.9.13-management
     container_name: universe-simulator-rabbitmq
@@ -59,6 +22,44 @@ services:
       - rabbitmq:/var/lib/rabbitmq
       - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.1.0
+    container_name: universe-simulator-elasticsearch
+    restart: always
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    deploy:
+      resources:
+        limits:
+          memory: 1gb
+    environment:
+      - bootstrap.memory_lock=true
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.1.0
+    container_name: universe-simulator-kibana
+    restart: always
+    ports:
+      - 5601:5601
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.1.0
+    container_name: universe-simulator-logstash
+    restart: always
+    environment:
+      - XPACK_MONITORING_ENABLED=false
+    ports:
+      - 4560:4560
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+
   zipkin:
     image: openzipkin/zipkin:2.23.16
     container_name: universe-simulator-zipkin
@@ -68,7 +69,10 @@ services:
       - RABBIT_USER=user
       - RABBIT_PASSWORD=password
       - STORAGE_TYPE=elasticsearch
-      - ES_HOSTS=elasticsearch:9200
+      - ES_HOSTS=https://elasticsearch:9200
+      - ES_SSL_NO_VERIFY=true
+      - ES_USERNAME=elastic
+      - ES_PASSWORD={elasticsearch-password}
       - ES_TEMPLATE_PRIORITY=1
       - ES_INDEX_SHARDS=1
       - ES_INDEX_REPLICAS=0
@@ -77,5 +81,5 @@ services:
 
 volumes:
   consul:
-  elasticsearch:
   rabbitmq:
+  elasticsearch:

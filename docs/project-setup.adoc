@@ -2,7 +2,10 @@
 
 This file contains documentation which applies to all projects.
 Project-specific setup guides can be found in the
-`development/project-setup.adoc` files in other projects.
+`development/project-setup.adoc` files in other projects. All required
+software components and their configurations can be found in the
+`development` directory (in the `common` project and in other projects
+where it exists).
 
 == Https/TLS
 To run applications with `TLS` you need a keystore. The certificate in the
@@ -21,14 +24,9 @@ self-signed certificate and private key: `keytool -genkeypair -v
 `openssl pkcs12 -in universe-simulator.p12 -out universe-simulator-cert.pem
 -nokeys`
 
-== Software
-Go to the `development` directory (in the `common` project and in other
-projects where it exists) and run `docker-compose -p universe-simulator up -d`
-to install all required software components.
+== Consul
+* Run `docker-compose -p universe-simulator up -d consul`
 
-== Configuration
-
-=== Consul
 * Create a `config` folder in Consul's `Key/Value`.
 
 * Inside the `config` folder create a `application` folder. Properties
@@ -53,6 +51,8 @@ the following properties with `data` as key:
   "app.rabbitmq.event-queue": "event"
 }
 ----
+#Replace the `{your-key-store-password}` placeholder with your actual
+keystore password.#
 
 * Inside the `application` folder create a `local` folder. Properties
 in this folder will be available to all services for `local` profile
@@ -90,9 +90,45 @@ Add the following OS environment variables:
 * `US_CONSUL_HOST`
 * `US_CONSUL_PORT`
 
-== ELK
+== RabbitMQ
+* Run `docker-compose -p universe-simulator up -d rabbitmq`
 
-=== Templates
+== Elasticsearch
+
+* Run `docker-compose -p universe-simulator up -d elasticsearch`
+
+* Run `docker exec -it universe-simulator-elasticsearch
+/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic`
+to generate a password for the `elastic` user.
+
+* Run `docker exec -it universe-simulator-elasticsearch
+/usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana`
+to generate an enrollment token for kibana.
+
+You can find mode information in the official
+https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html[
+setup guide].
+
+== Kibana
+
+=== Setup
+* Run `docker-compose -p universe-simulator up -d kibana`
+
+* Check logs for the `universe-simulator-kibana` container, go to the
+provided setup url and follow the setup instructions in the kibana UI.
+
+* Use the generated
+enrollment token.
+
+* Log in with the `elastic` user and the generated password.
+
+You can find mode information in the official
+https://www.elastic.co/guide/en/kibana/current/docker.html[
+setup guide].
+
+=== Configuration
+
+==== Templates
 Go to `Stack Management > Index Management > Index Templates` in
 `Kibana` and create the following index template:
 
@@ -110,31 +146,43 @@ Go to `Stack Management > Index Management > Index Templates` in
 }
 ----
 
-=== Lifecycle policies
+==== Lifecycle policies
 Go to `Stack Management > Index Lifecycle Policies` and add policies for
 `zipkin` and `logstash`. E.g.:
 
-* Policy name: `zipkin`
+* Policy name: `logstash`
 * Hot phase: Delete data after this phase
 * Hot phase > Rollover: disable `Use recommended defaults`
 * Hot phase > Rollover: disable `Enable rollover`
 
-image::project-setup-elk-lifecycle-policies.png[]
+image::project-setup-elastic-stack-lifecycle-policies.png[]
 
 * Add `logstash` policy to the `logstash` index template.
 * Add `zipkin` policy to the `zipkin-span_template` index template. +
 #This policy will be created automatically by zipkin.#
 
-=== Index patterns
-After starting applications, go to `Stack Management > Index Patterns`
-and add the following index pattern:
+==== Data views
+After starting applications, go to `Stack Management > Data Views`
+and add the following data view:
 
 * Name: `logstash-*`
 * Timestamp field: `@timestamp`
 
-You can add microservice-specific index patterns using the following
+You can add microservice-specific data views using the following
 syntax: `logstash-{service}-*` where `service` maps to the
 `spring.application.name` property in `application.properties`.
+
+== Logstash
+* Replace the `{elasticsearch-password}` placeholder with an actual password
+in the `logstash.conf` file.
+
+* Run `docker-compose -p universe-simulator up -d logstash`
+
+== Zipkin
+* Replace the `{elasticsearch-password}` placeholder with an actual password
+in the `zipkin` docker compose service.
+
+* Run `docker-compose -p universe-simulator up -d zipkin`
 
 == Running an application
 You can run an application with the `local` profile from your IDE or
