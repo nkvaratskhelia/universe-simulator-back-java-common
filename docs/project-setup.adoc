@@ -73,19 +73,11 @@ to the `spring.application.name` property in `application.properties`
 and `profile` maps to your active spring boot profile.
 
 == RabbitMQ
-* Run `docker-compose -p universe-simulator up -d rabbitmq`
+Run `docker-compose -p universe-simulator up -d rabbitmq`
 
 == Elasticsearch
 
-* Run `docker-compose -p universe-simulator up -d elasticsearch`
-
-* Run `docker exec -it universe-simulator-elasticsearch
-/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic`
-to generate a password for the `elastic` user.
-
-* Run `docker exec -it universe-simulator-elasticsearch
-/usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana`
-to generate an enrollment token for kibana.
+Run `docker-compose -p universe-simulator up -d elasticsearch`
 
 You can find mode information in the official
 https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html[
@@ -93,24 +85,13 @@ setup guide].
 
 == Kibana
 
-=== Setup
-* Run `docker-compose -p universe-simulator up -d kibana`
-
-* Check logs for the `universe-simulator-kibana` container, go to the
-provided setup url and follow the setup instructions in the kibana UI.
-
-* Use the generated
-enrollment token.
-
-* Log in with the `elastic` user and the generated password.
+Run `docker-compose -p universe-simulator up -d kibana`
 
 You can find mode information in the official
 https://www.elastic.co/guide/en/kibana/current/docker.html[
 setup guide].
 
-=== Configuration
-
-==== Templates
+=== Templates
 Go to `Stack Management > Index Management > Index Templates` in
 `Kibana` and create the following index template:
 
@@ -128,9 +109,9 @@ Go to `Stack Management > Index Management > Index Templates` in
 }
 ----
 
-==== Lifecycle policies
-Go to `Stack Management > Index Lifecycle Policies` and add policies for
-`zipkin` and `logstash`. E.g.:
+=== Lifecycle policies
+Go to `Stack Management > Index Lifecycle Policies` and add a policy for
+the `logstash` index template:
 
 * Policy name: `logstash`
 * Hot phase: Delete data after this phase
@@ -140,10 +121,8 @@ Go to `Stack Management > Index Lifecycle Policies` and add policies for
 image::project-setup-elastic-stack-lifecycle-policies.png[]
 
 * Add `logstash` policy to the `logstash` index template.
-* Add `zipkin` policy to the `zipkin-span_template` index template. +
-#This policy will be created automatically by zipkin.#
 
-==== Data views
+=== Data views
 After starting applications, go to `Stack Management > Data Views`
 and add the following data view:
 
@@ -155,16 +134,7 @@ syntax: `logstash-{service}-*` where `service` maps to the
 `spring.application.name` property in `application.properties`.
 
 == Logstash
-* Replace the `{elasticsearch-password}` placeholder with an actual password
-in the `logstash.conf` file.
-
-* Run `docker-compose -p universe-simulator up -d logstash`
-
-== Zipkin
-* Replace the `{elasticsearch-password}` placeholder with an actual password
-in the `zipkin` docker compose service.
-
-* Run `docker-compose -p universe-simulator up -d zipkin`
+Run `docker-compose -p universe-simulator up -d logstash`
 
 == Configuration
 

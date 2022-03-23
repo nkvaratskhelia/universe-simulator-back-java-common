@@ -36,6 +36,8 @@ services:
           memory: 1gb
     environment:
       - bootstrap.memory_lock=true
+      - discovery.type=single-node
+      - xpack.security.enabled=false
     ports:
       - 9200:9200
       - 9300:9300
@@ -53,8 +55,6 @@ services:
     image: docker.elastic.co/logstash/logstash:8.1.0
     container_name: universe-simulator-logstash
     restart: always
-    environment:
-      - XPACK_MONITORING_ENABLED=false
     ports:
       - 4560:4560
     volumes:
@@ -69,10 +69,7 @@ services:
       - RABBIT_USER=user
       - RABBIT_PASSWORD=password
       - STORAGE_TYPE=elasticsearch
-      - ES_HOSTS=https://elasticsearch:9200
-      - ES_SSL_NO_VERIFY=true
-      - ES_USERNAME=elastic
-      - ES_PASSWORD={elasticsearch-password}
+      - ES_HOSTS=elasticsearch:9200
       - ES_TEMPLATE_PRIORITY=1
       - ES_INDEX_SHARDS=1
       - ES_INDEX_REPLICAS=0
