@@ -5,11 +5,11 @@ plugins {
     id 'maven-publish'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'org.sonarqube' version '3.3'
-    id 'org.owasp.dependencycheck' version '7.0.3'
+    id 'org.owasp.dependencycheck' version '7.0.4.1'
 }
 
 group = 'com.example.universe.simulator'
-version = '0.9.4'
+version = '0.9.5'
 sourceCompatibility = '17'
 
 idea {
