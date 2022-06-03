@@ -11,7 +11,7 @@ services:
       - ./consul.json:/consul/config/consul.json
 
   rabbitmq:
-    image: rabbitmq:3.10.2-management
+    image: rabbitmq:3.10.5-management
     container_name: universe-simulator-rabbitmq
     restart: always
     hostname: universe-simulator
