@@ -10,11 +10,11 @@ import javax.validation.constraints.NotBlank;
 @ConfigurationProperties(prefix = "app")
 @Validated
 @Getter @Setter
-public class CommonProperties {
+public class RabbitMQProperties {
 
     /**
-     * Logstash url in the form of host:port.
+     * Name of the event queue.
      */
     @NotBlank
-    private String logstashUrl;
+    private String eventQueue;
 }
