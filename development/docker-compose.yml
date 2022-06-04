@@ -60,22 +60,6 @@ services:
     volumes:
       - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
 
-  zipkin:
-    image: openzipkin/zipkin:2.23.16
-    container_name: universe-simulator-zipkin
-    restart: always
-    environment:
-      - RABBIT_ADDRESSES=rabbitmq:5672
-      - RABBIT_USER=user
-      - RABBIT_PASSWORD=password
-      - STORAGE_TYPE=elasticsearch
-      - ES_HOSTS=elasticsearch:9200
-      - ES_TEMPLATE_PRIORITY=1
-      - ES_INDEX_SHARDS=1
-      - ES_INDEX_REPLICAS=0
-    ports:
-      - 9411:9411
-
 volumes:
   consul:
   rabbitmq:

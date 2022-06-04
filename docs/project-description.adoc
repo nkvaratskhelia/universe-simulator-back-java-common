@@ -99,7 +99,7 @@ enabled.
 `Consul`
 
 == Distributed tracing
-`Sleuth` `Zipkin`
+`Sleuth`
 
 == Messaging
 `RabbitMQ`
