@@ -33,7 +33,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1gb
+          memory: 2gb
     environment:
       - bootstrap.memory_lock=true
       - discovery.type=single-node

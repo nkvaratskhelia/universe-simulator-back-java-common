@@ -117,11 +117,11 @@ the `logstash` index template:
 * Hot phase > Rollover: disable `Use recommended defaults`
 * Hot phase > Rollover: disable `Enable rollover`
 
-image::project-setup-elastic-stack-lifecycle-policies.png[]
+image::project-setup-kibana-lifecycle-policies.png[]
 
 * Add `logstash` policy to the `logstash` index template.
 
-image::project-setup-elastic-stack-lifecycle-policy-index-template.png[]
+image::project-setup-kibana-lifecycle-policies-index-template.png[]
 
 === Data views
 After starting applications, go to `Stack Management > Data Views`
