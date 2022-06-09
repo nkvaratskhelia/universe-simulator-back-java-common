@@ -121,6 +121,8 @@ image::project-setup-elastic-stack-lifecycle-policies.png[]
 
 * Add `logstash` policy to the `logstash` index template.
 
+image::project-setup-elastic-stack-lifecycle-policy-index-template.png[]
+
 === Data views
 After starting applications, go to `Stack Management > Data Views`
 and add the following data view:
