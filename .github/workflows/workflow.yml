@@ -11,10 +11,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - uses: gradle/wrapper-validation-action@v1
-      - name: build, test & code coverage
+      - name: build
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: build jacocoTestReport jacocoTestCoverageVerification --build-cache --info --stacktrace --warning-mode all
+          arguments: build --build-cache --info --stacktrace --warning-mode all
       - name: sonarqube
         uses: gradle/gradle-build-action@v2
         with:
