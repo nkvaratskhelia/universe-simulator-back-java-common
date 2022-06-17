@@ -146,7 +146,9 @@ Create a `application-local.properties` file next to
 following properties:
 
 ----
+#config
 spring.config.import=consul:
+#server
 server.port={port-of-your-choice}
 ----
 
