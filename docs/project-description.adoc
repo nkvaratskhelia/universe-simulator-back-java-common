@@ -88,10 +88,6 @@ for security vulnerabilities. You can run the `dependencyCheckAnalyze`
 task to do the check manually. Additionally, the `dependency-check`
 GitHub Actions workflow performs daily checks.
 
-== HTTPS/TLS
-All services run with `HTTPS/TLS`. Additionally, `HTTP/2` protocol is also
-enabled.
-
 == Logging
 `Elasticsearch` `Logstash` `Kibana`
 

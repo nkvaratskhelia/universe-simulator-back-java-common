@@ -7,23 +7,6 @@ software components and their configurations can be found in the
 `development` directory (in the `common` project and in other projects
 where it exists).
 
-== Https/TLS
-To run applications with `TLS` you need a keystore. The certificate in the
-keystore can be either self-signed or provided by a CA. You can use `openssl`
-and java's `keytool` utility for working with keystore. To create all the
-necessary files, follow these steps:
-
-* Create a `~/universe-simulator` directory.
-
-* In the `~/universe-simulator` directory create a keystore file with a
-self-signed certificate and private key: `keytool -genkeypair -v
--alias universe-simulator -keystore universe-simulator.p12 -keyalg RSA
--validity 365 -ext SAN=dns:localhost,ip:127.0.0.1`
-
-* Extract the certificate from the keystore with:
-`openssl pkcs12 -in universe-simulator.p12 -out universe-simulator-cert.pem
--nokeys`
-
 == Consul
 * Run `docker-compose -p universe-simulator up -d consul`
 
@@ -36,11 +19,6 @@ the following properties with `data` as key:
 [source, json]
 ----
 {
-  "spring.cloud.consul.discovery.scheme": "https",
-  "spring.cloud.consul.discovery.health-check-tls-skip-verify": true,
-  "server.ssl.key-store": "${HOME}/universe-simulator/universe-simulator.p12",
-  "server.ssl.key-store-password": "{your-key-store-password}",
-  "server.http2.enabled": true,
   "server.shutdown": "graceful",
   "spring.sleuth.sampler.probability": 1.0,
   "spring.rabbitmq.template.exchange": "universe-simulator",
@@ -51,8 +29,6 @@ the following properties with `data` as key:
   "app.rabbitmq.event-queue": "event"
 }
 ----
-#Replace the `{your-key-store-password}` placeholder with your actual
-keystore password.#
 
 * Inside the `application` folder create a `local` folder. Properties
 in this folder will be available to all services for `local` profile
