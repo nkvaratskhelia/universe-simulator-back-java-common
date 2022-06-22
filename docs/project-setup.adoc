@@ -51,6 +51,9 @@ and `profile` maps to your active spring boot profile.
 == RabbitMQ
 Run `docker-compose -p universe-simulator up -d rabbitmq`
 
+== Redis
+Run `docker-compose -p universe-simulator up -d redis`
+
 == Elasticsearch
 
 Run `docker-compose -p universe-simulator up -d elasticsearch`
