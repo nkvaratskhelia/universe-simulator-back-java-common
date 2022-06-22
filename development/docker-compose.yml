@@ -26,11 +26,11 @@ services:
     container_name: universe-simulator-redis
     image: redis:7.0.2
     restart: always
-    command: redis-server --save 120 1 --requirepass password
+    command: redis-server --save 60 1 --requirepass password
     ports:
       - 6379:6379
     volumes:
-      - redis:/var/lib/redis/data
+      - redis:/data
 
   elasticsearch:
     container_name: universe-simulator-elasticsearch

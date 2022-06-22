@@ -113,5 +113,5 @@ You can access `OpenAPI` definition at `/v3/api-docs` and `Swagger` ui at
 
 === Redis cli
 
-* Run `docker exec -it {container-name} redis-cli` to connect to redis.
+* Run `docker exec -it {container} redis-cli` to connect to redis.
 * Authenticate: `auth {redis-password}`
