@@ -21,12 +21,10 @@ the following properties with `data` as key:
 {
   "server.shutdown": "graceful",
   "spring.sleuth.sampler.probability": 1.0,
-  "spring.rabbitmq.template.exchange": "universe-simulator",
   "management.endpoints.web.exposure.include": "*",
   "management.endpoint.health.show-details": "always",
   "management.info.java.enabled": true,
-  "management.info.os.enabled": true,
-  "app.rabbitmq.event-queue": "event"
+  "management.info.os.enabled": true
 }
 ----
 
@@ -37,8 +35,6 @@ only. Add the following properties with `data` as key:
 [source, json]
 ----
 {
-  "spring.rabbitmq.username": "user",
-  "spring.rabbitmq.password": "password",
   "app.logstash-url": "localhost:4560"
 }
 ----
