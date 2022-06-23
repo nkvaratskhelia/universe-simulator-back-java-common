@@ -7,7 +7,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotBlank;
 
-@ConfigurationProperties(prefix = "app")
+@ConfigurationProperties(prefix = "app.rabbitmq")
 @Validated
 @Getter @Setter
 public class RabbitMQProperties {
