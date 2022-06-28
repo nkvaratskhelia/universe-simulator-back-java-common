@@ -8,7 +8,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotBlank;
 
-@ConfigurationProperties(prefix = "app.rabbitmq", ignoreInvalidFields = true)
+@ConfigurationProperties(prefix = "app.rabbitmq")
 @Component
 @Validated
 @Getter @Setter
