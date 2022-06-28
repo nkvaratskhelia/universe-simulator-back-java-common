@@ -17,11 +17,16 @@ idea {
     }
 }
 
+def coverageExclusions = [
+        '**/com/example/universe/simulator/common/config/*_.*',
+]
+
 sonarqube {
     properties {
         property 'sonar.host.url', 'https://sonarcloud.io'
         property 'sonar.organization', 'universe-simulator'
         property 'sonar.login', System.getenv('US_SONARQUBE_TOKEN')
+        property 'sonar.coverage.exclusions', coverageExclusions
     }
 }
 
