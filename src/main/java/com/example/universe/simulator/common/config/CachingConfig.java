@@ -17,10 +17,10 @@ import java.time.Duration;
 public class CachingConfig {
 
     @Bean
-    public RedisCacheConfiguration cacheConfiguration(@Value("${spring.cache.redis.time-to-live}") Long cacheTtlSeconds) {
+    public RedisCacheConfiguration cacheConfiguration(@Value("${spring.cache.redis.time-to-live}") Duration timeToLive) {
         return RedisCacheConfiguration.defaultCacheConfig()
-            .entryTtl(Duration.ofSeconds(cacheTtlSeconds))
-            .disableCachingNullValues()
-            .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(RedisSerializer.json()));
+                .entryTtl(timeToLive)
+                .disableCachingNullValues()
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(RedisSerializer.json()));
     }
 }
