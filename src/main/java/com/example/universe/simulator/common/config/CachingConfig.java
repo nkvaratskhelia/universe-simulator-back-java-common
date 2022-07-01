@@ -19,8 +19,8 @@ public class CachingConfig {
     @Bean
     public RedisCacheConfiguration cacheConfiguration(@Value("${spring.cache.redis.time-to-live}") Duration timeToLive) {
         return RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(timeToLive)
-                .disableCachingNullValues()
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(RedisSerializer.json()));
+            .entryTtl(timeToLive)
+            .disableCachingNullValues()
+            .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(RedisSerializer.json()));
     }
 }
