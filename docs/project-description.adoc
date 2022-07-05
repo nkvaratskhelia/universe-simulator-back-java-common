@@ -102,6 +102,9 @@ You can access `OpenAPI` definition at `/v3/api-docs` and `Swagger` ui at
 == Metrics
 `Spring Boot Actuator`
 
+== Monitoring
+`Spring Boot Admin`
+
 == Config server & Service discovery
 `Consul`
 

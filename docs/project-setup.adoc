@@ -35,6 +35,7 @@ only. Add the following properties with `data` as key:
 [source, json]
 ----
 {
+  "spring.boot.admin.client.url": "http://localhost:8442",
   "app.logstash-url": "localhost:4560"
 }
 ----
