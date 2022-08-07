@@ -21,6 +21,7 @@ the following properties with `data` as key:
 {
   "server.shutdown": "graceful",
   "spring.sleuth.sampler.probability": 1.0,
+  "spring.jackson.deserialization.adjust-dates-to-context-time-zone": false,
   "management.endpoints.web.exposure.include": "*",
   "management.endpoint.health.show-details": "always",
   "management.endpoint.health.probes.enabled": true,
