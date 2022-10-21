@@ -1,7 +1,7 @@
 services:
   consul:
     container_name: universe-simulator-consul
-    image: consul:1.13.2
+    image: consul:1.13.3
     restart: always
     command: agent
     ports:
