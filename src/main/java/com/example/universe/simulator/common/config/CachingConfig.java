@@ -11,7 +11,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 
 import java.time.Duration;
 
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnProperty(prefix = "app.caching", name = "enabled", havingValue = "true")
 @EnableCaching
 public class CachingConfig {
