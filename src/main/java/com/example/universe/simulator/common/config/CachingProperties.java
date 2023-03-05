@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "app.caching")
 @AllArgsConstructor
 @Getter
-public class CachingProperties {
+class CachingProperties {
 
     /**
      * Enables app-wide caching.

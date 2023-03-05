@@ -10,7 +10,7 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 @AllArgsConstructor
 @Getter
-public class RabbitMQProperties {
+class RabbitMQProperties {
 
     /**
      * Name of the event queue.

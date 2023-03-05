@@ -8,20 +8,22 @@ import org.springframework.amqp.core.ExchangeBuilder;
 import org.springframework.amqp.core.QueueBuilder;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration(proxyBeanMethods = false)
+@EnableConfigurationProperties(RabbitMQProperties.class)
 public class RabbitMQConfig {
 
     @Bean
-    public Jackson2JsonMessageConverter messageConverter(ObjectMapper objectMapper) {
+    Jackson2JsonMessageConverter messageConverter(ObjectMapper objectMapper) {
         return new Jackson2JsonMessageConverter(objectMapper);
     }
 
     @Bean
-    public Declarables declarables(@Value("${spring.rabbitmq.template.exchange}") String exchangeName,
-                                   @Value("${app.rabbitmq.event-queue}") String eventQueueName) {
+    Declarables declarables(@Value("${spring.rabbitmq.template.exchange}") String exchangeName,
+                            @Value("${app.rabbitmq.event-queue}") String eventQueueName) {
         DirectExchange exchange = ExchangeBuilder
             .directExchange(exchangeName)
             .build();
