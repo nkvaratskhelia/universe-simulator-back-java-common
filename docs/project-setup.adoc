@@ -105,12 +105,13 @@ image::project-setup-kibana-lifecycle-policies-index-template.png[]
 After starting applications, go to `Stack Management > Data Views`
 and add the following data view:
 
-* Name: `logstash-*`
+* Name: `logstash`
+* Index pattern: `logstash-*`
 * Timestamp field: `@timestamp`
 
 You can add microservice-specific data views using the following
-syntax: `logstash-{service}-*` where `service` maps to the
-`spring.application.name` property in `application.properties`.
+syntax for the index pattern: `logstash-{service}-*` where `service`
+maps to the `spring.application.name` property in `application.properties`.
 
 == Logstash
 Run `docker-compose -p universe-simulator up -d logstash`
