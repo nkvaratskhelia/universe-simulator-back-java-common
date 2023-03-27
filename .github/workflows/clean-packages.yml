@@ -1,0 +1,14 @@
+on:
+  schedule:
+    - cron: '45 03 * * *'
+
+jobs:
+  clean-packages:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/delete-package-versions@v4
+        with:
+          package-name: 'com.example.universe.simulator.common'
+          package-type: 'maven'
+          min-versions-to-keep: 5
