@@ -1,7 +1,9 @@
-on: push
+on:
+  schedule:
+    - cron: '45 03 * * *'
 
 jobs:
-  build:
+  clean-packages:
     runs-on: ubuntu-latest
 
     steps:
@@ -9,4 +11,4 @@ jobs:
         with:
           package-name: 'com.example.universe.simulator.common'
           package-type: 'maven'
-          min-versions-to-keep: 1
+          min-versions-to-keep: 5
