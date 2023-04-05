@@ -12,7 +12,7 @@ services:
 
   rabbitmq:
     container_name: universe-simulator-rabbitmq
-    image: rabbitmq:3.11.11-management
+    image: rabbitmq:3.11.13-management
     restart: always
     hostname: universe-simulator
     ports:
