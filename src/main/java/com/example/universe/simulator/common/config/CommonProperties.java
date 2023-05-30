@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "app")
+@ConfigurationProperties("app")
 @AllArgsConstructor
 @Getter
 public class CommonProperties {
