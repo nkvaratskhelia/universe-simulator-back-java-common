@@ -10,11 +10,15 @@ where it exists).
 == Consul
 * Run `docker-compose -p universe-simulator up -d consul`
 
+* Go to http://localhost:8500/
+
 * Create a `config` folder in Consul's `Key/Value`.
 
 * Inside the `config` folder create a `application` folder. Properties
-in this folder will be available to all services for all profiles. Add
-the following properties with `data` as key:
+in this folder will be available to all services for all profiles.
+
+* Inside the `application` folder add the following properties with `data`
+as key:
 
 [source, json]
 ----
@@ -31,7 +35,10 @@ the following properties with `data` as key:
 
 * Inside the `application` folder create a `local` folder. Properties
 in this folder will be available to all services for `local` profile
-only. Add the following properties with `data` as key:
+only.
+
+* Inside the `local` folder add the following properties with `data`
+as key:
 
 [source, json]
 ----
