@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'com.example.universe.simulator'
-version = '2.3.5'
+version = '2.3.6'
 
 java {
     sourceCompatibility = '17'
