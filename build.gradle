@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'com.example.universe.simulator'
-version = '2.3.7'
+version = '2.3.8'
 
 java {
     sourceCompatibility = '17'
@@ -31,7 +31,6 @@ dependencies {
     compileOnly 'org.springframework.boot:spring-boot-starter-json'
     compileOnly 'org.springframework.boot:spring-boot-starter-test'
     compileOnly 'org.springframework.boot:spring-boot-starter-validation'
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }
 
 idea {
