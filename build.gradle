@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'com.example.universe.simulator'
-version = '2.5.1'
+version = '2.5.2'
 
 java {
     sourceCompatibility = '17'
@@ -68,5 +68,3 @@ publishing {
         }
     }
 }
-
-lombok { version = dependencyManagement.importedProperties['lombok.version'] }
