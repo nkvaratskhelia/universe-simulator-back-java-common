@@ -12,7 +12,7 @@ services:
 
   rabbitmq:
     container_name: universe-simulator-rabbitmq
-    image: rabbitmq:3.12.6-management
+    image: rabbitmq:3.12.7-management
     restart: always
     hostname: universe-simulator
     ports:
@@ -24,7 +24,7 @@ services:
 
   redis:
     container_name: universe-simulator-redis
-    image: redis:7.2.1
+    image: redis:7.2.2
     restart: always
     command: redis-server --save 60 1 --requirepass password
     ports:
