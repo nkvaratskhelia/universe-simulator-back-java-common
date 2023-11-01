@@ -1,7 +1,7 @@
 services:
   consul:
     container_name: universe-simulator-consul
-    image: hashicorp/consul:1.16.2
+    image: hashicorp/consul:1.16.3
     restart: always
     command: agent
     ports:
@@ -12,7 +12,7 @@ services:
 
   rabbitmq:
     container_name: universe-simulator-rabbitmq
-    image: rabbitmq:3.12.7-management
+    image: rabbitmq:3.12.8-management
     restart: always
     hostname: universe-simulator
     ports:
