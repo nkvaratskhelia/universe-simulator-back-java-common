@@ -8,7 +8,7 @@ Library with common code and config for use in other projects.
 `Microservices`
 
 == Language
-`Java 17`
+`Java`
 
 == Build tool
 `Gradle Wrapper`
@@ -37,7 +37,7 @@ testing purposes and the `local` profile for local development.
 == Testing
 
 === Tools
-`JUnit 5` `Mockito` `AssertJ` `Awaitility`
+`JUnit` `Mockito` `AssertJ` `Awaitility`
 
 === Integration tests
 `Testcontainers`
