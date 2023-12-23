@@ -1,16 +1,6 @@
 package com.example.universe.simulator.common.config;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties("app.caching")
-@AllArgsConstructor
-@Getter
-public class CachingProperties {
-
-    /**
-     * Enables app-wide caching.
-     */
-    private boolean enabled;
-}
+public record CachingProperties(boolean enabled) { }
