@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'com.example.universe.simulator'
-version = '2.9.0'
+version = '2.9.1'
 
 java {
     sourceCompatibility = '21'
@@ -21,7 +21,7 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom 'org.springframework.boot:spring-boot-dependencies:3.2.1'
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:3.2.2'
     }
 }
 
