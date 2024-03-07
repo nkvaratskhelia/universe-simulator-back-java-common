@@ -1,7 +1,7 @@
 services:
   consul:
     container_name: universe-simulator-consul
-    image: hashicorp/consul:1.17.3
+    image: hashicorp/consul:1.18.0
     restart: always
     command: agent
     ports:
