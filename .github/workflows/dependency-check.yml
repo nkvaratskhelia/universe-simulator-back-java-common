@@ -13,5 +13,4 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
       - uses: gradle/actions/setup-gradle@v4
-        with:
-          arguments: dependencyCheckAnalyze --build-cache --info --stacktrace
+      - run: ./gradlew dependencyCheckAnalyze --build-cache --info --stacktrace
