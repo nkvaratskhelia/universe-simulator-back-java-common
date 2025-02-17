@@ -10,13 +10,12 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-      - uses: gradle/actions/wrapper-validation@v3
       - name: build
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v4
         with:
           arguments: build --build-cache --info --stacktrace
       - name: sonarqube
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v4
         with:
           arguments: sonarqube --build-cache --info --stacktrace
         env:
@@ -28,7 +27,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.US_SONARQUBE_TOKEN }}
       - name: publish
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v4
         if: github.ref == 'refs/heads/main'
         with:
           arguments: publish --build-cache --info --stacktrace
