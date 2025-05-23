@@ -5,7 +5,7 @@ services:
     restart: always
     command: agent
     ports:
-      - 8500:8500
+      - "8500:8500"
     volumes:
       - consul:/consul/data
       - ./consul.json:/consul/config/consul.json
@@ -16,8 +16,8 @@ services:
     restart: always
     hostname: universe-simulator
     ports:
-      - 5672:5672
-      - 15672:15672
+      - "5672:5672"
+      - "15672:15672"
     volumes:
       - rabbitmq:/var/lib/rabbitmq
       - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
@@ -26,11 +26,19 @@ services:
     container_name: universe-simulator-redis
     image: redis:8.0.1
     restart: always
-    command: redis-server --save 60 1 --requirepass password
+    command: redis-server --save 60 1 --requirepass ${REDIS_PASSWORD}
     ports:
-      - 6379:6379
+      - "6379:6379"
     volumes:
       - redis:/data
+    networks:
+      - universe-simulator
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   elasticsearch:
     container_name: universe-simulator-elasticsearch
@@ -49,8 +57,8 @@ services:
       - discovery.type=single-node
       - xpack.security.enabled=false
     ports:
-      - 9200:9200
-      - 9300:9300
+      - "9200:9200"
+      - "9300:9300"
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
 
@@ -59,14 +67,14 @@ services:
     image: docker.elastic.co/kibana/kibana:9.0.1
     restart: always
     ports:
-      - 5601:5601
+      - "5601:5601"
 
   logstash:
     container_name: universe-simulator-logstash
     image: docker.elastic.co/logstash/logstash:9.0.1
     restart: always
     ports:
-      - 4560:4560
+      - "4560:4560"
     volumes:
       - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
 
@@ -75,3 +83,8 @@ volumes:
   rabbitmq:
   redis:
   elasticsearch:
+
+networks:
+  universe-simulator:
+    name: universe-simulator
+    driver: bridge
