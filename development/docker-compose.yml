@@ -9,6 +9,8 @@ services:
     volumes:
       - consul:/consul/data
       - ./consul.json:/consul/config/consul.json
+    networks:
+      - universe-simulator
 
   rabbitmq:
     container_name: universe-simulator-rabbitmq
@@ -21,6 +23,8 @@ services:
     volumes:
       - rabbitmq:/var/lib/rabbitmq
       - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+    networks:
+      - universe-simulator
 
   redis:
     container_name: universe-simulator-redis
@@ -61,6 +65,8 @@ services:
       - "9300:9300"
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
+    networks:
+      - universe-simulator
 
   kibana:
     container_name: universe-simulator-kibana
@@ -68,6 +74,8 @@ services:
     restart: always
     ports:
       - "5601:5601"
+    networks:
+      - universe-simulator
 
   logstash:
     container_name: universe-simulator-logstash
@@ -77,6 +85,8 @@ services:
       - "4560:4560"
     volumes:
       - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    networks:
+      - universe-simulator
 
 volumes:
   consul:
