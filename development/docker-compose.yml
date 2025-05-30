@@ -28,7 +28,7 @@ services:
 
   redis:
     container_name: universe-simulator-redis
-    image: redis:8.0.2
+    image: redis:8.0.1
     restart: always
     command: redis-server --save 60 1 --requirepass ${REDIS_PASSWORD}
     ports:
