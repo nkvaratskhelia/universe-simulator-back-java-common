@@ -1,7 +1,7 @@
 services:
   consul:
     container_name: universe-simulator-consul
-    image: hashicorp/consul:1.21.0
+    image: hashicorp/consul:1.21.1
     restart: always
     command: agent
     ports:
@@ -28,7 +28,7 @@ services:
 
   redis:
     container_name: universe-simulator-redis
-    image: redis:8.0.1
+    image: redis:8.0.2
     restart: always
     command: redis-server --save 60 1 --requirepass ${REDIS_PASSWORD}
     ports:
