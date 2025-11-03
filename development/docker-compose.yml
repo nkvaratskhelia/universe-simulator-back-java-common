@@ -1,7 +1,7 @@
 services:
   consul:
     container_name: universe-simulator-consul
-    image: hashicorp/consul:1.21.5
+    image: hashicorp/consul:1.22.0
     restart: always
     command: agent
     ports:
@@ -14,7 +14,7 @@ services:
 
   rabbitmq:
     container_name: universe-simulator-rabbitmq
-    image: rabbitmq:4.1.4-management
+    image: rabbitmq:4.2.0-management
     restart: always
     hostname: universe-simulator
     ports:
@@ -46,7 +46,7 @@ services:
 
   elasticsearch:
     container_name: universe-simulator-elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:9.1.4
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.2.0
     restart: always
     ulimits:
       memlock:
@@ -70,7 +70,7 @@ services:
 
   kibana:
     container_name: universe-simulator-kibana
-    image: docker.elastic.co/kibana/kibana:9.1.4
+    image: docker.elastic.co/kibana/kibana:9.2.0
     restart: always
     ports:
       - "5601:5601"
@@ -79,7 +79,7 @@ services:
 
   logstash:
     container_name: universe-simulator-logstash
-    image: docker.elastic.co/logstash/logstash:9.1.4
+    image: docker.elastic.co/logstash/logstash:9.2.0
     restart: always
     ports:
       - "4560:4560"
