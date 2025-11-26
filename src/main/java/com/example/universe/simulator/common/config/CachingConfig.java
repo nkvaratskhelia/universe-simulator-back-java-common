@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.cache.RedisCacheWriter;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 
@@ -29,7 +31,15 @@ public class CachingConfig {
     }
 
     @Bean
-    CacheManager cacheManager(RedisCacheConfiguration redisCacheConfiguration) {
-        return RedisCacheManager.builder().cacheDefaults(redisCacheConfiguration).build();
+    RedisCacheWriter redisCacheWriter(RedisConnectionFactory redisConnectionFactory) {
+        return RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory);
+    }
+
+    @Bean
+    CacheManager cacheManager(RedisCacheConfiguration redisCacheConfiguration, RedisCacheWriter redisCacheWriter) {
+        return RedisCacheManager
+            .builder(redisCacheWriter)
+            .cacheDefaults(redisCacheConfiguration)
+            .build();
     }
 }
