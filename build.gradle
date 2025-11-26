@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'com.example.universe.simulator'
-version = '3.4.0'
+version = '3.4.1'
 
 java {
     toolchain {
@@ -35,7 +35,6 @@ dependencyManagement {
 
 dependencies {
     compileOnly 'org.springframework.boot:spring-boot-starter-amqp'
-    compileOnly 'org.springframework.boot:spring-boot-starter-data-redis'
     compileOnly 'org.springframework.boot:spring-boot-starter-test'
     compileOnly 'org.springframework.boot:spring-boot-starter-validation'
 }
