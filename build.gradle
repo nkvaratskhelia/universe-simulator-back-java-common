@@ -9,11 +9,11 @@ plugins {
 }
 
 group = 'com.example.universe.simulator'
-version = '3.4.3'
+version = '3.4.4'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
