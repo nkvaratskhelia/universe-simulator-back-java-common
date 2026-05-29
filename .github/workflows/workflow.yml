@@ -12,7 +12,7 @@ jobs:
           distribution: 'temurin'
       - uses: gradle/actions/setup-gradle@v6
       - run: ./gradlew build --build-cache --info --stacktrace
-      - run: ./gradlew sonarqube --build-cache --info --stacktrace
+      - run: ./gradlew sonar --build-cache --info --stacktrace
         env:
           US_SONARQUBE_TOKEN: ${{ secrets.US_SONARQUBE_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
